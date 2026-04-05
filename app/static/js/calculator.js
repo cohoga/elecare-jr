@@ -1,13 +1,13 @@
 const ML_TO_OZ = 29.57;
 const DISP = 0.027; // Displacement (oz/g)
 const CAL_G = 4.93; // Powder Caloric Density
-const BUFFER_ML = 100; // Hardcoded Safety Buffer
+const BUFFER_ML = 120; // Hardcoded Safety Buffer
 
 function updateDashboard() {
     const rate = parseFloat(document.getElementById('rate-in').value) || 0;
     const density = parseFloat(document.getElementById('den-in').value);
 
-    // 1. Calculate Required Yield (16h + 100ml)
+    // 1. Calculate Required Yield (16h + 120ml)
     const runOz = (rate * 16) / ML_TO_OZ;
     const targetDailyYieldOz = ((rate * 16) + BUFFER_ML) / ML_TO_OZ;
     const pYieldOz = targetDailyYieldOz / 2;
