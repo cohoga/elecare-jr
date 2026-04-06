@@ -17,6 +17,5 @@ COPY . .
 # 6. Expose the port Flask is running on
 EXPOSE 5005
 
-# 7. Command to run the application
-# We use the host 0.0.0.0 to allow external access from your Mac/PC
-CMD ["python", "app/main.py"]
+# Use Gunicorn to serve the app safely
+CMD ["gunicorn", "--bind", "0.0.0.0:5005", "--workers", "4", "app.main:app"]
