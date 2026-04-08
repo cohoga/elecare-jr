@@ -1,6 +1,6 @@
-const ML_TO_OZ = 29.57;
-const DISP = 0.027; // Displacement (oz/g)
-const CAL_G = 4.93; // Powder Caloric Density
+const ML_TO_OZ = 29.57353;
+const DISP = 0.025198; // Displacement (oz/g)
+const CAL_G = 4.92788; // Powder Caloric Density
 const BUFFER_ML = 120; // Hardcoded Safety Buffer
 
 function updateDashboard() {
@@ -18,15 +18,15 @@ function updateDashboard() {
     const pWaterG = pWaterOz * ML_TO_OZ;
 
     // 3. UI Updates - Header
-    setVal('raw-need-oz', runOz.toFixed(1) + " oz");
-    setVal('target-yield-oz', targetDailyYieldOz.toFixed(1) + " oz");
+    setVal('raw-need-oz', runOz.toFixed(2) + " oz");
+    setVal('target-yield-oz', targetDailyYieldOz.toFixed(2) + " oz");
 
     // 4. UI Updates - Portions
     for (let i = 1; i <= 2; i++) {
         setVal(`pw-oz${i}`, pWaterOz.toFixed(2) + " oz");
-        setVal(`pw-g${i}`, pWaterG.toFixed(1) + "g Water");
-        setVal(`pp${i}`, pPowderG.toFixed(1) + "g");
-        setVal(`py${i}`, "Yield: " + pYieldOz.toFixed(1) + " oz");
+        setVal(`pw-g${i}`, pWaterG.toFixed(2) + "g Water");
+        setVal(`pp${i}`, pPowderG.toFixed(2) + "g");
+        setVal(`py${i}`, "Yield: " + pYieldOz.toFixed(2) + " oz");
         
         // Adjust Cylinder Heights (Max capacity 600g for scale)
         const wPct = (pWaterG / 600) * 100;
@@ -41,9 +41,9 @@ function updateDashboard() {
     }
 
     // 5. UI Updates - Batch Summary
-    setVal('tot-w-g', (pWaterG * 2).toFixed(1) + "g");
-    setVal('tot-p-g', (pPowderG * 2).toFixed(1) + "g");
-    setVal('tot-y-oz', targetDailyYieldOz.toFixed(1) + " oz");
+    setVal('tot-w-g', (pWaterG * 2).toFixed(2) + "g");
+    setVal('tot-p-g', (pPowderG * 2).toFixed(2) + "g");
+    setVal('tot-y-oz', targetDailyYieldOz.toFixed(2) + " oz");
 
     // 6. Table Sync
     syncTables(density, rate);
