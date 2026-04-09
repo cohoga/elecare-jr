@@ -33,7 +33,7 @@ def get_mixing_rows():
             p_g = (d * w_oz) / (4.92788 - (d * 0.025198))
             yield_oz = w_oz + (p_g * 0.025198)  # Total yield in oz
             p_data[d] = {"grams": round(p_g, 2), "yield": round(yield_oz, 2)}
-        rows.append({"water_oz": f"{w_oz:.1f}", "water_g": int(w_g), "powders": p_data})
+        rows.append({"water_oz": f"{w_oz:.1f}", "water_g": round(w_g, 2), "powders": p_data})
     return rows
 
 @app.route('/')

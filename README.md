@@ -1,12 +1,12 @@
 ### EleCare Jr. Precision Prep Dashboard
 
-A specialized web utility designed to calculate precise infant formula mixing ratios for enterally-fed children. This application implements a **Minimized Waste** strategy, prioritizing an exact 100ml safety buffer over a 16-hour feeding cycle rather than rounding water volumes to the nearest half-ounce.
+A specialized web utility designed to calculate precise infant formula mixing ratios for enterally-fed children. This application implements a **Minimized Waste** strategy, prioritizing an exact 120ml safety buffer over a 16-hour feeding cycle rather than rounding water volumes to the nearest half-ounce.
 
 ---
 
 ### 🚀 Core Features
 
-* **Precision Displacement Logic:** Accounts for the volumetric displacement of EleCare Jr. powder ($0.027 \text{ oz/g}$) to ensure final yield accuracy.
+* **Precision Displacement Logic:** Accounts for the volumetric displacement of EleCare Jr. powder ($0.025198 \text{ oz/g}$) to ensure final yield accuracy.
 * **Zero-Waste Target:** Calculates the absolute minimum grams of formula needed to satisfy a 16-hour run plus a 100ml buffer.
 * **Dual-Portion Splitter:** Automatically divides the daily requirement into two equal preparation containers.
 * **Dynamic Reference Tables:** Synchronized lookup tables for pump schedules (40–80 ml/hr) and formula density (30–33 cal/oz).
@@ -62,9 +62,9 @@ A specialized web utility designed to calculate precise infant formula mixing ra
 The dashboard operates on the **Minimized Formula** principle. Instead of starting with a water volume (e.g., 14.5 oz) and finding the yield, it starts with the **Target Yield** and solves backward for the ingredients.
 
 **The Math:**
-1.  **Target Yield:** $((\text{Rate} \times 16) + 100\text{ml}) \div 29.57 = \text{Total Oz}$
-2.  **Powder ($P$):** $(\text{Portion Yield} \times \text{Density}) \div 4.93 \text{ cal/g}$
-3.  **Water ($W$):** $\text{Portion Yield} - (P \times 0.027 \text{ displacement})$
+1.  **Target Yield:** $((\text{Rate} \times 16) + 100\text{ml}) \div 29.57353 = \text{Total Oz}$
+2.  **Powder ($P$):** $(\text{Portion Yield} \times \text{Density}) \div 4.92788 \text{ cal/g}$
+3.  **Water ($W$):** $\text{Portion Yield} - (P \times 0.025198 \text{ displacement})$
 
 This ensures that every gram of EleCare Jr. is utilized effectively, providing the exact caloric density required without over-preparing.
 
