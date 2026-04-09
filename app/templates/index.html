@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container py-4">
-        <div class="card mixer-card mb-4 p-4 border-0">
+        <div class="card mixer-card mb-4 p-4 border-0 shadow-sm">
             <div class="row align-items-center">
                 <div class="col-md-4 border-end">
                     <h5 class="fw-bold text-primary mb-3">Daily Prep Guide</h5>
@@ -21,8 +21,10 @@
                         <div class="col-6">
                             <label class="small fw-bold text-muted">Density</label>
                             <select id="den-in" class="form-select form-select-lg">
-                                <option value="30">30</option><option value="31">31</option>
-                                <option value="32">32</option><option value="33" selected>33</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33" selected>33</option>
                             </select>
                         </div>
                     </div>
@@ -38,10 +40,13 @@
                     <div class="row">
                         {% for i in [1, 2] %}
                         <div class="col-6 {{ 'border-start' if i == 2 else '' }}">
-                            <div class="cylinder"><div id="fw{{i}}" class="fluid-water"></div><div id="fp{{i}}" class="fluid-powder"></div></div>
-                            <span id="pw-oz{{i}}" class="portion-val text-water">--</span>
+                            <div class="cylinder">
+                                <div id="fw{{i}}" class="fluid-water"></div>
+                                <div id="fp{{i}}" class="fluid-powder"></div>
+                            </div>
+                            <span id="pw-oz{{i}}" class="portion-val text-water d-block">--</span>
                             <small id="pw-g{{i}}" class="fw-bold text-primary d-block mb-2">--</small>
-                            <span id="pp{{i}}" class="portion-val text-powder">--</span>
+                            <span id="pp{{i}}" class="portion-val text-powder d-block">--</span>
                             <div id="py{{i}}" class="badge bg-light text-dark border mt-2">--</div>
                         </div>
                         {% endfor %}
@@ -64,12 +69,26 @@
                     <div class="table-container">
                         {% for d, rows in pump_payload.data_by_density.items() %}
                         <table id="pt-{{d}}" class="table table-sm table-bordered text-center p-view d-none mb-0">
-                            <thead class="sticky-th"><tr><th>ml/hr</th>{% for h in pump_payload.durations %}<th>{{h}}h</th>{% endfor %}</tr></thead>
+                            <thead class="sticky-th bg-white">
+                                <tr>
+                                    <th>ml/hr</th>
+                                    {% for h in pump_payload.durations %}
+                                    <th>{{h}}h</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
                             <tbody>
                                 {% for r in rows %}
                                 <tr id="pump-row-{{r.rate}}" class="pump-rate-row">
-                                    <td class="bg-light fw-bold">{{r.rate}}</td>
-                                    {% for s in r.schedules %}<td><b>{{s.oz}}</b></td>{% endfor %}
+                                    <td class="bg-light fw-bold align-middle">{{r.rate}}</td>
+                                    {% for s in r.schedules %}
+                                    <td class="py-2"> 
+                                        <div class="fw-bold">{{s.oz}}<small class="text-muted ms-1">oz</small></div>
+                                        <div class="text-primary fw-semibold" style="font-size: 0.7rem; line-height: 1;">
+                                            {{s.cal}} <span style="font-size: 0.6rem;">CAL</span>
+                                        </div>
+                                    </td> 
+                                    {% endfor %}
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -78,15 +97,23 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-header bg-secondary text-white py-1 small fw-bold">FORMULA DATA (33 CAL)</div>
                     <div class="table-container">
                         <table class="table table-sm text-center mb-0">
-                            <thead class="sticky-th"><tr><th>Water oz</th><th>Water g</th><th>Powder g</th><th>Yield oz</th></tr></thead>
+                            <thead class="sticky-th bg-white">
+                                <tr><th>Water oz</th><th>Water g</th><th>Powder g</th><th>Yield oz</th></tr>
+                            </thead>
                             <tbody>
                                 {% for row in mixing_rows %}
-                                <tr><td>{{row.water_oz}}</td><td class="text-primary">{{row.water_g}}g</td><td class="fw-bold">{{row.powders[33].grams}}g</td><td>{{row.powders[33].yield}}</td></tr>
+                                <tr>
+                                    <td>{{row.water_oz}}</td>
+                                    <td class="text-primary">{{row.water_g}}g</td>
+                                    <td class="fw-bold">{{row.powders[33].grams}}g</td>
+                                    <td>{{row.powders[33].yield}}</td>
+                                </tr>
                                 {% endfor %}
                             </tbody>
                         </table>

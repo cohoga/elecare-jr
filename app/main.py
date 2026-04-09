@@ -6,9 +6,9 @@ app = Flask(__name__)
 ML_TO_OZ = 29.57353
 
 def get_pump_payload():
-    durations = [8, 12, 16, 20, 24]
+    durations = [14, 15, 16, 17, 18]
     densities = [30, 31, 32, 33]
-    rates = list(range(50, 81))
+    rates = list(range(55, 81))
     
     data = {"durations": durations, "data_by_density": {}}
     for d in densities:
